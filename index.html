@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lumina Facility Care | Premium Chicago Maintenance</title>
+    <meta
+      name="description"
+      content="Commercial cleaning and facility management for Chicago's most iconic workspaces. Lumina specializes in sustainable, high-craft maintenance."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="glow-container">
+      <div class="glow-orb"></div>
+    </div>
+
+    <!-- Preloader -->
+    <div id="preloader">
+      <div class="loader-content">
+        <span class="loader-text">LUMINA</span>
+        <div class="loader-bar"></div>
+      </div>
+    </div>
+
+    <nav class="navbar glass">
+      <div class="nav-content">
+        <div class="logo">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 2L2 7L12 12L22 7L12 2Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M2 17L12 22L22 17"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M2 12L12 17L22 12"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span class="brand-name">LUMINA</span>
+        </div>
+        <div class="theme-toggle-wrapper">
+          <span class="toggle-label light">Light</span>
+          <button
+            id="themeToggle"
+            class="switch-toggle"
+            aria-label="Toggle High-Contrast Mode"
+          >
+            <div class="switch-handle"></div>
+          </button>
+          <span class="toggle-label dark">Dark</span>
+          <audio
+            id="toggleSound"
+            src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"
+          ></audio>
+        </div>
+      </div>
+    </nav>
+
+    <main class="bento-grid">
+      <!-- Hero Card -->
+      <section class="card hero-card glass">
+        <div class="hero-chip">Chicago HQ — Willis Tower</div>
+        <h1>The Art of <span class="gradient-text">Pristine Space</span></h1>
+        <p>
+          Redefining facility maintenance for Chicago's high-rises and medical
+          labs with elite craft and sustainable tech.
+        </p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-primary">Book Consultation</a>
+          <a href="#services" class="btn btn-secondary">Our Capabilities</a>
+        </div>
+      </section>
+
+      <!-- Stats Card -->
+      <section class="card stats-card glass">
+        <div class="stat-item">
+          <span class="stat-number">4.9/5</span>
+          <span class="stat-label">Google Rating</span>
+        </div>
+        <div class="stat-separator"></div>
+        <div class="stat-item">
+          <span class="stat-number">24/7</span>
+          <span class="stat-label">On-Call Team</span>
+        </div>
+      </section>
+
+      <!-- Services Card (Target for Search) -->
+      <section class="card services-card glass" id="services">
+        <div class="card-header">
+          <div class="header-left">
+            <svg
+              class="header-icon"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <h2>Our Capabilities</h2>
+          </div>
+          <div class="services-search-wrapper">
+            <svg
+              class="services-search-icon"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input
+              type="text"
+              id="serviceSearch"
+              class="services-search-input"
+              placeholder="Search capabilities..."
+              autocomplete="off"
+            />
+            <button
+              id="searchClear"
+              class="services-search-clear"
+              style="display: none"
+              title="Clear search"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+
+        <div id="servicesRows" class="services-container">
+          <!-- Dynamically populated by app.js -->
+        </div>
+      </section>
+
+      <!-- Location Card -->
+      <section class="card location-card glass">
+        <h3>Chicago Roots</h3>
+        <p>From the Loop to River North, we maintain the pulse of the city.</p>
+        <div class="city-skyline"></div>
+      </section>
+
+      <!-- Contact Card -->
+      <section class="card contact-card glass" id="contact">
+        <h3>Elite Restoration Start Here</h3>
+        <p>Interested in Lumina's medical-grade precision? Reach out.</p>
+        <div class="footer-links">
+          <a
+            href="mailto:hello@luminafacility.com"
+            class="btn btn-primary footer-btn email-btn"
+            >Email Us</a
+          >
+          <a
+            href="https://linkedin.com/company/lumina"
+            class="btn btn-secondary footer-btn linkedin-btn"
+            >LinkedIn</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer class="glass">
+      <p>
+        &copy; 2026 Lumina Facility Care LLC. All Rights Reserved. Based in
+        Chicago, IL.
+      </p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
