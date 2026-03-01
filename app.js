@@ -163,7 +163,7 @@ const companyData = {
     {
       name: "IWCA",
       summary: "Safety and quality standards for a common janitorial add‑on.",
-      logo: "https://www.google.com/s2/favicons?domain=iwca.org&sz=128",
+      logo: "iwca_logo.png",
       segment: "Industry",
     },
   ],
@@ -191,14 +191,14 @@ const companyData = {
       name: "ISSA CIMS Certification",
       summary:
         "Industry standard for quality management and operational excellence.",
-      logo: "https://icon.horse/icon/issa.com",
+      logo: "https://www.google.com/s2/favicons?domain=issa.com&sz=128",
       segment: "Industry",
     },
     {
       name: "ISSA CIMS-GB Certification",
       summary:
         "Green Building certification for sustainable cleaning practices.",
-      logo: "https://icon.horse/icon/issa.com",
+      logo: "https://www.google.com/s2/favicons?domain=issa.com&sz=128",
       segment: "Industry",
     },
   ],
@@ -1279,35 +1279,22 @@ function renderTestimonialsTab(d) {
 // ── Render: Featured Video (Hero) ──
 function renderVideo(d) {
   const c = document.getElementById("heroVideoContainer");
-  if (!c || !d.video) return;
-
-  const getAutoplayUrl = (url) => {
-    let newUrl = url;
-    if (newUrl.includes("?")) newUrl += "&autoplay=1&loop=1&enablejsapi=1";
-    else newUrl += "?autoplay=1&loop=1&enablejsapi=1";
-    return newUrl;
-  };
-  const getThumbnail = (url) => {
-    const match = url.match(/embed\/([^?]+)/);
-    return match
-      ? `https://img.youtube.com/vi/${match[1]}/maxresdefault.jpg`
-      : "https://placehold.co/800x450/111827/3b82f6?text=About+Us";
-  };
-
-  const thumbUrl = getThumbnail(d.video.url);
+  if (!c) return;
 
   c.innerHTML = `
     <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; border-radius:inherit; overflow:hidden;">
-      <iframe class="video-iframe" id="heroVideoIframe" src="${getAutoplayUrl(d.video.url)}" 
-        title="${d.video.title}" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        style="width:100%; height:100%; flex:1;"
-        allowfullscreen>
-      </iframe>
-      <div class="video-fallback-img" style="width:100%; height:100%; display:none; position:relative;">
-        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6954?w=1200&q=80" alt="Lumina Professional Team" style="width:100%; height:100%; object-fit:cover;" onerror="this.onerror=null; this.src='${thumbUrl}';">
-      </div>
+      <video
+        src="Lumina-intro.mp4"
+        controls
+        autoplay
+        muted
+        loop
+        playsinline
+        style="width:100%; height:100%; flex:1; object-fit:cover; background:#000;"
+        title="Lumina Facility Care — Introduction"
+      >
+        Your browser does not support the video tag.
+      </video>
     </div>
   `;
 }
