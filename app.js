@@ -131,7 +131,7 @@ const companyData = {
       name: "IICRC",
       summary:
         "Credibility and specs coverage on carpets, floors, restoration.",
-      logo: "https://www.google.com/s2/favicons?domain=iicrc.org&sz=128",
+      logo: "iicrc_logo.png",
       segment: "Industry",
     },
     {
