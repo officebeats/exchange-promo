@@ -1001,6 +1001,17 @@ body:not(.premium-off) .tab-btn.premium-feature.active {
   color: var(--text-muted);
 }
 
+/* Safety Awareness Coloring */
+.safety-excellent {
+  color: var(--success) !important;
+}
+.safety-good {
+  color: var(--warning) !important;
+}
+.safety-poor {
+  color: #ff453a !important;
+} /* High-contrast red */
+
 .emr-gauge__bar {
   width: 120px;
   height: 6px;

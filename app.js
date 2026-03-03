@@ -1552,23 +1552,23 @@ function renderVideo(d) {
   `;
 }
 
-// ── Render: Trust & Safety (v2.1 — EMR + Background Checks + Security Clearance + Training) ──
+// ── Render: Trust & Safety (v2.2 — EMR + Alignment Refinements) ──
+// ── Render: Trust & Safety (v2.2 — Typography & Color Standardization) ──
 function renderTrustLayer(d) {
   const c = $("#trustContent");
   if (!c || !d.compliance) return;
 
   const emr = d.compliance.emr[0];
-  const bgChecks = d.compliance.backgroundChecks;
-  const clearance = d.compliance.securityClearance;
 
-  // EMR Score styling logic
+  // EMR Score styling logic with Safety Awareness
   const emrFloat = parseFloat(emr.rate);
-  const emrColor = emrFloat <= 1.0 ? "var(--success)" : "var(--error)";
-  // Map 0.5 - 1.5 to 0% - 100% position
+  let emrColor = "var(--success)";
+  if (emrFloat > 1.0) emrColor = "#ff453a";
+  else if (emrFloat > 0.8) emrColor = "var(--warning)";
+
   let emrPercent = ((emrFloat - 0.5) / (1.5 - 0.5)) * 100;
   emrPercent = Math.max(0, Math.min(100, emrPercent));
 
-  // Icons for the trust items
   const bgCheckIcon =
     '<svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" width="18" height="18" style="flex-shrink:0;"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>';
   const clearanceIcon =
@@ -1578,7 +1578,7 @@ function renderTrustLayer(d) {
 
   c.innerHTML = `
     <div style="display:flex; flex-direction:column; gap:20px;">
-      <!-- Safety Benchmark -->
+      <!-- Safety Benchmark Card -->
       <div style="background:var(--pill-bg); padding:16px; border-radius:12px; border:1px solid var(--border-light);">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
           <div>
@@ -1598,43 +1598,44 @@ function renderTrustLayer(d) {
             <div style="font-size:13px; color:var(--text-secondary);">Industry average is 1.0</div>
           </div>
           <div style="text-align:right;">
-            <div style="font-size:24px; font-weight:800; color:${emrColor}; letter-spacing:-0.5px; line-height:1;">${emr.rate} <span style="font-size:12px; font-weight:600; color:var(--text-muted);">EMR</span></div>
+            <div style="font-size:24px; font-weight:800; letter-spacing:-0.5px; line-height:1; color: ${emrColor};">${emr.rate} <span style="font-size:12px; font-weight:600; color:var(--text-muted);">EMR</span></div>
           </div>
         </div>
-        
-        <!-- EMR Bar Component -->
         <div style="position:relative; width:100%; height:8px; background:linear-gradient(to right, #34c759 40%, #ffcc00 60%, #ff3b30 100%); border-radius:4px; margin-top:16px;">
           <div style="position:absolute; top:-4px; left:${emrPercent}%; transform:translateX(-50%); width:4px; height:16px; background:#000; border-radius:2px; z-index:2; border:1px solid #fff;"></div>
           <div style="position:absolute; top:-2px; left:50%; width:2px; height:12px; background:rgba(0,0,0,0.2); z-index:1;"></div>
         </div>
-        <div style="display:flex; justify-content:space-between; margin-top:6px; font-size:10px; color:var(--text-muted); font-weight:600;">
+        <div style="display:flex; justify-content:space-between; margin-top:8px; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.05em;">
           <span style="color:var(--success);">High SAFETY (0.5)</span>
-          <span>Industry Avg (1.0)</span>
-          <span style="color:var(--error);">Low SAFETY (1.5)</span>
+          <span style="color:var(--text-muted);">Industry Avg (1.0)</span>
+          <span style="color:#ff453a;">Low SAFETY (1.5)</span>
         </div>
       </div>
 
-      <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px;">
-        <div style="flex:1 1 calc(50% - 6px); max-width:calc(50% - 6px); background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: box-shadow 0.2s, transform 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
+      <!-- Trust Factor Tiles (Matching Compliance Typography) -->
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+        <div style="background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: all 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
           <div style="display:flex; align-items:center; gap:8px;">
             ${trainingIcon}
             <span style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.4px;">Specialized Training</span>
           </div>
-          <div style="font-size:14px; font-weight:500; color:var(--success); letter-spacing:-0.2px; line-height:1;">YES</div>
+          <div style="font-size:14px; font-weight:500; color:var(--text-primary); letter-spacing:-0.2px; line-height:1;">YES</div>
         </div>
-        <div style="flex:1 1 calc(50% - 6px); max-width:calc(50% - 6px); background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: box-shadow 0.2s, transform 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
+        <div style="background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: all 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
           <div style="display:flex; align-items:center; gap:8px;">
             ${clearanceIcon}
             <span style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.4px;">Security Clearance</span>
           </div>
-          <div style="font-size:14px; font-weight:500; color:var(--success); letter-spacing:-0.2px; line-height:1;">YES</div>
+          <div style="font-size:14px; font-weight:500; color:var(--text-primary); letter-spacing:-0.2px; line-height:1;">YES</div>
         </div>
-        <div style="flex:1 1 calc(50% - 6px); max-width:calc(50% - 6px); background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; transition: box-shadow 0.2s, transform 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
-          <div style="display:flex; align-items:center; gap:8px;">
-            ${bgCheckIcon}
-            <span style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.4px;">Background Checks</span>
+        <div style="grid-column: span 2; display:flex; justify-content:center;">
+          <div style="background:var(--pill-bg); border:1px solid var(--border-light); border-radius:14px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; width:calc(50% - 6px); transition: all 0.2s;" onmouseenter="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';" onmouseleave="this.style.transform=''; this.style.boxShadow='';">
+            <div style="display:flex; align-items:center; gap:8px;">
+              ${bgCheckIcon}
+              <span style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.4px;">Background Checks</span>
+            </div>
+            <div style="font-size:14px; font-weight:500; color:var(--text-primary); letter-spacing:-0.2px; line-height:1;">YES</div>
           </div>
-          <div style="font-size:14px; font-weight:500; color:var(--success); letter-spacing:-0.2px; line-height:1;">YES</div>
         </div>
       </div>
     </div>
