@@ -1608,9 +1608,9 @@ function renderTrustLayer(d) {
           <div style="position:absolute; top:-2px; left:50%; width:2px; height:12px; background:rgba(0,0,0,0.2); z-index:1;"></div>
         </div>
         <div style="display:flex; justify-content:space-between; margin-top:6px; font-size:10px; color:var(--text-muted); font-weight:600;">
-          <span>High SAFETY (0.5)</span>
+          <span style="color:var(--success);">High SAFETY (0.5)</span>
           <span>Industry Avg (1.0)</span>
-          <span>Low SAFETY (1.5)</span>
+          <span style="color:var(--error);">Low SAFETY (1.5)</span>
         </div>
       </div>
 
