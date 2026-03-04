@@ -1566,7 +1566,8 @@ function renderTrustLayer(d) {
   // EMR Score styling logic with Safety Awareness
   const emrFloat = parseFloat(emr.rate);
   let emrColor = "#34c759"; // Explicit Green <= 0.95 (conservative high-safety)
-  if (emrFloat > 1.1) emrColor = "#ff453a"; // Red > 1.1
+  if (emrFloat > 1.1)
+    emrColor = "#ff453a"; // Red > 1.1
   else if (emrFloat > 0.95) emrColor = "#fcae17"; // Explicit Yellow 0.95 - 1.1
 
   let emrPercent = ((emrFloat - 0.5) / (1.5 - 0.5)) * 100;
@@ -1592,13 +1593,13 @@ function renderTrustLayer(d) {
                 <div class="emr-tooltip-text">
                   <strong>EMR Safety Rating</strong><br><br>
                   An Experience Modification Rate (EMR) is used by insurance companies to gauge past cost of injuries and future chances of risk. <br><br>
-                  &bull; <strong>1.0</strong> is the industry average.<br>
-                  &bull; <strong>Below 1.0</strong> indicates a safer than average record.<br>
+                  &bull; <strong>1.0</strong> is the Industry Benchmark.<br>
+                  &bull; <strong>Below 1.0</strong> indicates a safer than benchmark record.<br>
                   &bull; <strong>Above 1.0</strong> indicates a higher risk record.
                 </div>
               </div>
             </div>
-            <div style="font-size:13px; color:var(--text-secondary);">Industry average is 1.0</div>
+            <div style="font-size:13px; color:var(--text-secondary);">Industry Benchmark is 1.0</div>
           </div>
           <div style="text-align:right;">
             <div style="font-size:24px; font-weight:800; letter-spacing:-0.5px; line-height:1; color: ${emrColor};">${emr.rate} <span style="font-size:12px; font-weight:600; color:var(--text-muted);">EMR</span></div>
@@ -1610,7 +1611,7 @@ function renderTrustLayer(d) {
         </div>
         <div style="display:flex; justify-content:space-between; margin-top:8px; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.05em;">
           <span style="color:var(--success);">High SAFETY (0.5)</span>
-          <span style="color:var(--text-muted);">Industry Avg (1.0)</span>
+          <span style="color:var(--text-muted);">Industry Benchmark (1.0)</span>
           <span style="color:#ff453a;">Low SAFETY (1.5)</span>
         </div>
       </div>
